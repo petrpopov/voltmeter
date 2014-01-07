@@ -3,6 +3,7 @@ $(function () {
     var realPath = $('#realPath').text().trim();
 
     var initAngle = 0;
+    var $pluso = $("#pluso");
     var $arrow = $("#arrow");
     var $device = $('#device');
     var $resultsShareButton = $('#resultsShare');
@@ -137,8 +138,10 @@ $(function () {
     };
 
     var changeFinalMessages = function(id) {
+
         //change image
-        $pizdecCustomImage.attr("src", imagePath+chosenLabelId+imageSuffix);
+        var imageUrl = imagePath+chosenLabelId+imageSuffix;
+        $pizdecCustomImage.attr("src", imageUrl);
         //change text
 
         var intId = parseInt(id);
@@ -195,6 +198,12 @@ $(function () {
                 break;
         }
         $messageType.text(messageValues[chosenLabelId]);
+
+
+        $pluso.attr("data-url", realPath + "/voltmeter/" + id);
+        $pluso.attr("data-image", imageUrl );
+        $pluso.attr("data-title", "Пиздецометр")
+        $pluso.attr("data-description", "У меня в жизни " + messageValues[id] + "! А что у тебя?")
     };
 
     var enableUI = function() {
