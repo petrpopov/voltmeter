@@ -99,3 +99,13 @@
         <button id="againButton" class="btn btn-lg btn-theme device-share"><span class="glyphicon glyphicon-share-alt"></span>Заново</button>
     </div>
 </div>
+
+<div class="row">
+    <hr/>
+    <div class="col-md-5">
+        <h3>Статистика за неделю</h3>
+        <p>
+            Скоро тут будут всякие бесполезные графики
+        </p>
+    </div>
+</div>
