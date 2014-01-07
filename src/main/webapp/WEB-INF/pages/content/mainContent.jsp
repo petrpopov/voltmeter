@@ -92,4 +92,8 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-offset-10">
+        <button id="againButton" class="btn btn-lg btn-theme device-share"><span class="glyphicon glyphicon-share-alt"></span>Заново</button>
+    </div>
 </div>

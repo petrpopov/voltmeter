@@ -6,8 +6,11 @@ $(function () {
     var $arrow = $("#arrow");
     var $device = $('#device');
     var $resultsShareButton = $('#resultsShare');
+    var $againButton = $('#againButton');
     var $results = $('#results');
     var $pizdecCustomImage = $('#pizdecCustomImage');
+
+    var $voltmeterid = $('#voltmeterid');
 
     var $messageFirst = $('#messageFirst');
     var $messageBefore = $('#messageBefore');
@@ -36,11 +39,18 @@ $(function () {
     var init = function() {
         enableUI();
         enableShare();
+        enableAgain();
     };
 
     var enableShare = function() {
         $resultsShareButton.click(function() {
             doShare();
+        });
+    };
+
+    var enableAgain = function() {
+        $againButton.click(function() {
+            doAgain();
         });
     };
 
@@ -67,7 +77,34 @@ $(function () {
             $('html, body').animate({
                 scrollTop: $results.offset().top
             }, BIG_ANIMATION_TIME);
+
+            $resultsShareButton.hide();
+            disableUI();
         });
+    };
+
+    var doAgain = function() {
+        fixed = false;
+        chosenLabelId = -1;
+        $voltmeterid.text("");
+
+
+        $resultsShareButton.show(SMALL_ANIMATION_TIME);
+        rotate(0);
+        $results.hide(SMALL_ANIMATION_TIME);
+        loadMainPage();
+        enableUI();
+    };
+
+    var loadMainPage = function() {
+        var path = "/";
+        window.history.pushState('', '', path);
+
+        if( ga ) {
+            ga('send', 'pageview', {
+                'page': path
+            });
+        }
     };
 
     var loadNewPage = function(id) {
@@ -85,9 +122,18 @@ $(function () {
     var showResultsById = function(id) {
         rotateToId(id);
 
+        fixed = true;
+
         //show results
         $results.show();
         changeFinalMessages(id);
+
+        $resultsShareButton.hide();
+
+        disableUI();
+
+        var intId = parseInt(id);
+        highlightLabel(intId, false);
     };
 
     var changeFinalMessages = function(id) {
@@ -153,6 +199,10 @@ $(function () {
 
     var enableUI = function() {
 
+        $.each(angles, function(n, value) {
+            unHighlightLabel(n);
+        });
+
         $device.on('mousemove', function(e) {
             var x1 = e.pageX;
             var y1 = e.pageY;
@@ -202,7 +252,7 @@ $(function () {
             unHighlightLabel(id);
         });
 
-        var requestedId = $('#voltmeterid').text().trim();
+        var requestedId = $voltmeterid.text().trim();
         if( requestedId ) {
             if( requestedId >= 0 && requestedId < angles.length ) {
                 showResultsById(requestedId);
@@ -214,6 +264,13 @@ $(function () {
         else {
             rotate(initAngle);
         }
+    };
+
+    var disableUI = function() {
+        $device.off('mousemove');
+        $('label[id^=label_]').off("click");
+        $('label[id^=label_]').off("mouseover");
+        $('label[id^=label_]').off("mouseout");
     };
 
     var rotate = function(degree) {
