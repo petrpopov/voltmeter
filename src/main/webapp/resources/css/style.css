@@ -39,6 +39,11 @@
     border-bottom: 1px solid #86878c;
 }
 
+.page-header h1 a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .margin-row {
     margin-top: 2%;
 }

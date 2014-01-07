@@ -5,10 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="row">
     <div class="page-header">
-        <h1>Пиздецометр <small>Потому что нам <span class="strikethrough">не</span> все равно!</small></h1>
+        <h1><a href="<spring:url value="/"/>">Пиздецометр</a> <small>Потому что нам <span class="strikethrough">не</span> все равно!</small></h1>
     </div>
 </div>
 <div class="row">
@@ -81,7 +82,12 @@
                     <p class="text-p"><span class="glyphicon glyphicon-share-alt"></span> Расскажите же скорее всем об этом:</p>
 
 
-                    <div class="pluso" data-background="transparent" data-options="medium,square,line,horizontal,counter,theme=05" data-services="facebook,twitter,vkontakte,google,livejournal,odnoklassniki" data-user="1262715342"></div>
+                    <div class="pluso"
+                         data-background="transparent"
+                         data-options="medium,square,line,horizontal,counter,theme=05"
+                         data-services="facebook,twitter,vkontakte,google,livejournal,odnoklassniki"
+                         data-user="1262715342">
+                    </div>
                 </div>
             </div>
         </div>

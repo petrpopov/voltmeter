@@ -12,12 +12,12 @@
 
 <meta property="og:title" content="Пиздецометр" />
 <meta property="og:description" content="Легкий и веселый способ поделиться со всем миром информацией, о том, что у вас все плохо. Или хорошо." />
-<meta property="og:url" content="http://www.pizdecometr.ru" />
-<meta property="og:image" content="http://www.pizdecometr.ru" />
+<meta property="og:url" content="http://www.pizdecometr.com" />
+<meta property="og:image" content="http://www.pizdecometr.com/resources/img/voltmeter_7.png" />
 
 <meta name="title" content="Пиздецометр" />
 <meta name="description" content="Легкий и веселый способ поделиться со всем миром информацией, о том, что у вас все плохо. Или хорошо." />
-<link rel="image_src" href="http://www.pizdecometr.ru" />
+<link rel="image_src" href="http://www.pizdecometr.com/resources/img/voltmeter_7.png" />
 
 
 <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" />

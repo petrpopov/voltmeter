@@ -57,8 +57,9 @@ $(function () {
             $('.notifyjs-bootstrap-base').hide();
         }
 
-        window.history.pushState('', '', realPath + "/voltmeter/" + chosenLabelId);
 
+
+        loadNewPage(chosenLabelId);
         changeFinalMessages();
 
         //show results
@@ -67,6 +68,18 @@ $(function () {
                 scrollTop: $results.offset().top
             }, BIG_ANIMATION_TIME);
         });
+    };
+
+    var loadNewPage = function(id) {
+        var path = "/voltmeter/" + id;
+        var url = realPath + path;
+        window.history.pushState('', '', url);
+
+        if( ga ) {
+            ga('send', 'pageview', {
+                'page': path
+            });
+        }
     };
 
     var showResultsById = function(id) {

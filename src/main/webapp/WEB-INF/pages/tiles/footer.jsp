@@ -9,6 +9,8 @@
 <div class="row">
     <hr/>
     <footer>
-        <p class="pull-left"><small>&copy; 2014 <a class="text" target="_blank" href="https://www.facebook.com/popov.petr">Petr Popov</a></small></p>
+        <p class="pull-left">
+            <small>&copy; 2014 <a class="text" target="_blank" href="http://www.innermansoftware.com">InnerMan Software</a></small>
+        </p>
     </footer>
 </div>
