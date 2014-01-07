@@ -34,37 +34,101 @@ $(function () {
     var BIG_ANIMATION_TIME = 2000;
 
     var init = function() {
-
         enableUI();
         enableShare();
     };
 
     var enableShare = function() {
         $resultsShareButton.click(function() {
-
-            if( chosenLabelId < 0 ) {
-                //show error message
-                $resultsShareButton.notify(emptyMessage, {
-                    position: "top",
-                    className: "error"
-                });
-                return;
-            }
-            else {
-                $('.notifyjs-bootstrap-base').hide();
-            }
-
-            changeFinalMessages();
-
-            //show results
-
-            $results.show(SMALL_ANIMATION_TIME, function() {
-                $('html, body').animate({
-                    scrollTop: $results.offset().top
-                }, BIG_ANIMATION_TIME);
-            });
-
+            doShare();
         });
+    };
+
+    var doShare = function() {
+        if( chosenLabelId < 0 ) {
+            //show error message
+            $resultsShareButton.notify(emptyMessage, {
+                position: "top",
+                className: "error"
+            });
+            return;
+        }
+        else {
+            $('.notifyjs-bootstrap-base').hide();
+        }
+
+        window.history.pushState('', '', realPath + "/voltmeter/" + chosenLabelId);
+
+        changeFinalMessages();
+
+        //show results
+        $results.show(SMALL_ANIMATION_TIME, function() {
+            $('html, body').animate({
+                scrollTop: $results.offset().top
+            }, BIG_ANIMATION_TIME);
+        });
+    };
+
+    var showResultsById = function(id) {
+        rotateToId(id);
+
+        changeFinalMessages();
+
+        //show results
+        $results.show(SMALL_ANIMATION_TIME, function() {
+            $('html, body').animate({
+                scrollTop: $results.offset().top
+            }, BIG_ANIMATION_TIME);
+        });
+    };
+
+    var changeFinalMessages = function() {
+        //change image
+        $pizdecCustomImage.attr("src", imagePath+chosenLabelId+imageSuffix);
+        //change text
+        switch (chosenLabelId) {
+            case 0:
+            case 1:
+            case 2:
+                $messageFirst.text("Поздравляем!");
+                $messageAfter.text("Что-то не очень в это верится.")
+                $messageBefore.text("В вашей жизни");
+                $messageAdd.text("все");
+                $messageLast.text("В любом случае, нам все равно.")
+                break;
+            case 3:
+            case 4:
+                $messageFirst.text("Мдее..");
+                $messageBefore.text("В вашей жизни");
+                $messageAdd.text("все");
+                $messageAfter.text("");
+                $messageLast.text("Это очень хорошо. Или нет. Нам все равно.");
+                break;
+            case 5:
+                $messageFirst.text("Мдее..");
+                $messageBefore.text("В вашей жизни");
+                $messageAdd.text("все как-то");
+                $messageAfter.text("");
+                $messageLast.text("Это печально. Или нет. Нам все равно.");
+                break;
+            case 6:
+            case 7:
+            case 8:
+                $messageFirst.text("Воу-воу, палехче!");
+                $messageBefore.text("У вас в жизни творится");
+                $messageAdd.text("какой-то");
+                $messageAfter.text("");
+                $messageLast.text("Это очень плохо. Или нет. Нам все равно.");
+                break;
+            default:
+                $messageFirst.text("Поздравляем!");
+                $messageBefore.text("В вашей жизни");
+                $messageAdd.text("");
+                $messageAfter.text("");
+                $messageLast.text("Это очень хорошо. Или нет. Нам все равно.");
+                break;
+        }
+        $messageType.text(messageValues[chosenLabelId]);
     };
 
     var enableUI = function() {
@@ -118,56 +182,18 @@ $(function () {
             unHighlightLabel(id);
         });
 
-        rotate(initAngle);
-    };
-
-    var changeFinalMessages = function() {
-        //change image
-        $pizdecCustomImage.attr("src", imagePath+chosenLabelId+imageSuffix);
-        //change text
-        switch (chosenLabelId) {
-            case 0:
-            case 1:
-            case 2:
-                $messageFirst.text("Поздравляем!");
-                $messageAfter.text("Что-то не очень в это верится.")
-                $messageBefore.text("В вашей жизни");
-                $messageAdd.text("все");
-                $messageLast.text("В любом случае, нам все равно.")
-                break;
-            case 3:
-            case 4:
-                $messageFirst.text("Мдее..");
-                $messageBefore.text("В вашей жизни");
-                $messageAdd.text("все");
-                $messageAfter.text("");
-                $messageLast.text("Это очень хорошо. Или нет. Нам все равно.");
-                break;
-            case 5:
-                $messageFirst.text("Мдее..");
-                $messageBefore.text("В вашей жизни");
-                $messageAdd.text("все как-то");
-                $messageAfter.text("");
-                $messageLast.text("Это печально. Или нет. Нам все равно.");
-                break;
-            case 6:
-            case 7:
-            case 8:
-                $messageFirst.text("Воу-воу, палехче!");
-                $messageBefore.text("У вас в жизни творится");
-                $messageAdd.text("какой-то");
-                $messageAfter.text("");
-                $messageLast.text("Это очень плохо. Или нет. Нам все равно.");
-                break;
-            default:
-                $messageFirst.text("Поздравляем!");
-                $messageBefore.text("В вашей жизни");
-                $messageAdd.text("");
-                $messageAfter.text("");
-                $messageLast.text("Это очень хорошо. Или нет. Нам все равно.");
-                break;
+        var requestedId = $('#voltmeterid').text().trim();
+        if( requestedId ) {
+            if( requestedId >= 0 && requestedId < angles.length ) {
+                showResultsById(requestedId);
+            }
+            else {
+                rotate(initAngle);
+            }
         }
-        $messageType.text(messageValues[chosenLabelId]);
+        else {
+            rotate(initAngle);
+        }
     };
 
     var rotate = function(degree) {
@@ -177,6 +203,14 @@ $(function () {
         $arrow.css({
             '-moz-transform': 'rotate(' + degree + 'deg)'
         });
+    };
+
+    var rotateToId = function(id) {
+        if(id >= 0 && id < angles.length ) {
+            rotate(angles[id]);
+            highlightLabel(id, false);
+            chosenLabelId = id;
+        }
     };
 
     var highlightLabel = function(id, mouseover) {

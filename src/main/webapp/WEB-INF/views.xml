@@ -21,6 +21,8 @@
     </definition>
 
     <definition name="error" extends="main">
+        <put-attribute name="content" value="/WEB-INF/pages/content/errorContent.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
 </tiles-definitions>
