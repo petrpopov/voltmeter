@@ -10,14 +10,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta property="og:title" content="Пиздецометр" />
-<meta property="og:description" content="Легкий и веселый способ поделиться со всем миром информацией, о том, что у вас все плохо. Или хорошо." />
-<meta property="og:url" content="http://www.pizdecometr.com" />
-<meta property="og:image" content="http://www.pizdecometr.com/resources/img/voltmeter_7.png" />
+<meta id="metaTitle" property="og:title" content="Пиздецометр" />
+<meta id="metaDescription"
+      property="og:description" content="Легкий и веселый способ поделиться со всем миром информацией, о том, что у вас все плохо. Или хорошо." />
+<meta id="metaUrl" property="og:url" content="http://www.pizdecometr.com" />
+<meta id="metaImage" property="og:image" content="http://www.pizdecometr.com/resources/img/voltmeter_7.png" />
 
-<meta name="title" content="Пиздецометр" />
-<meta name="description" content="Легкий и веселый способ поделиться со всем миром информацией, о том, что у вас все плохо. Или хорошо." />
-<link rel="image_src" href="http://www.pizdecometr.com/resources/img/voltmeter_7.png" />
+<meta id="metaTitle1" name="title" content="Пиздецометр" />
+<meta id="metaDescription1" name="description" content="Легкий и веселый способ поделиться со всем миром информацией, о том, что у вас все плохо. Или хорошо." />
+<link id="metaImage1" rel="image_src" href="http://www.pizdecometr.com/resources/img/voltmeter_7.png" />
 
 
 <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" />
@@ -44,6 +45,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/notify.min.js" type="text/javascript"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/lazyload.js" type="text/javascript"></script>
 
 <!-- Main logic -->
 <script src="${pageContext.request.contextPath}/resources/js/pizdec.js" type="text/javascript"></script>

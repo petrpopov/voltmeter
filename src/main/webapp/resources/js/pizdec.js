@@ -9,6 +9,8 @@ $(function () {
         realPath = realPathWithoutPort;
     }
 
+    var defaultImageUrl = "http://www.pizdecometr.com/resources/img/voltmeter_7.png";
+
     var initAngle = 0;
     var $pluso = $("#plusoContainer");
     var $arrow = $("#arrow");
@@ -45,6 +47,11 @@ $(function () {
     var BIG_ANIMATION_TIME = 2000;
 
     var init = function() {
+
+        LazyLoad.js("http://share.pluso.ru/pluso-like.js", function() {
+            createPluso();
+        } );
+
         enableUI();
         enableShare();
         enableAgain();
@@ -114,6 +121,8 @@ $(function () {
         $resultsShareButton.show(SMALL_ANIMATION_TIME);
         rotate(0);
         $results.hide(SMALL_ANIMATION_TIME);
+
+        setMetaMessages(-1);
         loadMainPage();
         enableUI();
     };
@@ -158,14 +167,35 @@ $(function () {
         highlightLabel(intId, false);
     };
 
+    var getVoltmeterImagePath = function(id) {
+
+        if( id == undefined ) {
+            return imagePath+chosenLabelId+imageSuffix;
+        }
+
+        var intId = parseInt(id);
+        if(isNaN(intId)) {
+            intId = chosenLabelId;
+        }
+        if( intId === -1 ) {
+            return defaultImageUrl;
+        }
+
+        var imageUrl = imagePath+intId+imageSuffix;
+        return imageUrl;
+    };
+
     var changeFinalMessages = function(id) {
 
         //change image
-        var imageUrl = imagePath+chosenLabelId+imageSuffix;
-        $pizdecCustomImage.attr("src", imageUrl);
+        $pizdecCustomImage.attr("src", getVoltmeterImagePath(id));
+
         //change text
 
         var intId = parseInt(id);
+        if( !isNaN(intId) ) {
+            chosenLabelId = intId;
+        }
 
         switch (intId) {
             case 0:
@@ -220,16 +250,41 @@ $(function () {
         }
         $messageType.text(messageValues[chosenLabelId]);
 
+        setMetaMessages(intId, getVoltmeterImagePath(id));
 
+        createPluso();
+    };
+
+    var createPluso = function() {
         if( window.pluso ) {
             if (typeof window.pluso.start === "function") {
 
                 $pluso.children().remove();
-                $pluso.append( getPluso(intId, imageUrl));
+                $pluso.append( getPluso(chosenLabelId, getVoltmeterImagePath(chosenLabelId)));
 
                 window.pluso.start();
             }
         }
+    };
+
+    var setMetaMessages = function(id, imageUrl) {
+
+        var title = "Пиздецометр. У меня в жизни " + messageValues[id] + "! А что у тебя?";
+        var url = realPath + "/voltmeter/" + id;
+        var currentImageUrl = imageUrl != undefined ? imageUrl : defaultImageUrl;
+
+        if( id < 0 ) {
+            title = "Пиздецометр";
+            url = realPath;
+            currentImageUrl = defaultImageUrl;
+        }
+
+        $('#metaTitle').attr("content", title);
+        $('#metaTitle1').attr("content", title);
+        $('#metaUrl').attr("content", url);
+
+        $('#metaImage').attr("content", currentImageUrl);
+        $('#metaImage1').attr("href", currentImageUrl);
     };
 
     var getPluso = function(id, imageUrl) {
@@ -372,7 +427,7 @@ $(function () {
     init();
 
 
-    (function() {
+  /*  (function() {
         if (window.pluso)if (typeof window.pluso.start == "function") return;
         if (window.ifpluso==undefined) { window.ifpluso = 1;
             var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
@@ -380,5 +435,5 @@ $(function () {
             s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
             var h=d[g]('body')[0];
             h.appendChild(s);
-        }})();
+        }})(); */
 });
