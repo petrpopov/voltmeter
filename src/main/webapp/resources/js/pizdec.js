@@ -269,7 +269,12 @@ $(function () {
 
     var setMetaMessages = function(id, imageUrl) {
 
-        var title = "Пиздецометр. У меня в жизни " + messageValues[id] + "! А что у тебя?";
+        var t = "";
+        if(id >= 0 && id < 6) {
+            t = "все ";
+        }
+
+        var title = "Пиздецометр. У меня в жизни " + t + messageValues[id] + "! А что у тебя?";
         var url = realPath + "/voltmeter/" + id;
         var currentImageUrl = imageUrl != undefined ? imageUrl : defaultImageUrl;
 
