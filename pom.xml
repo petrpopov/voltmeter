@@ -28,8 +28,38 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <mongodb.host>localhost</mongodb.host>
+                <mongodb.port>27017</mongodb.port>
+                <mongodb.db>voltmeter</mongodb.db>
+                <mongodb.username>test</mongodb.username>
+                <mongodb.password>test</mongodb.password>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>release</id>
+            <properties>
+                <mongodb.port>27017</mongodb.port>
+                <mongodb.db>voltmeter</mongodb.db>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
 
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>15.0</version>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>

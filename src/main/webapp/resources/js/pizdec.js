@@ -88,6 +88,20 @@ $(function () {
 
             $resultsShareButton.hide();
             disableUI();
+
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: realPath + "/stats/add",
+                dataType: "JSON",
+                data: JSON.stringify( {state: chosenLabelId, voteDate: new Date()} ),
+                success: function(data) {
+                    console.log(data);
+                }
+            });
         });
     };
 
