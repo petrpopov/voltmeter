@@ -1,9 +1,16 @@
 $(function () {
 
+    var defaultPort = "80";
+    var realPort = $('#realPort').text().trim();
+    var realPathWithoutPort = $('#realPathWithoutPort').text().trim();
+
     var realPath = $('#realPath').text().trim();
+    if( realPort === defaultPort ) {
+        realPath = realPathWithoutPort;
+    }
 
     var initAngle = 0;
-    var $pluso = $("#pluso");
+    var $pluso = $("#plusoContainer");
     var $arrow = $("#arrow");
     var $device = $('#device');
     var $resultsShareButton = $('#resultsShare');
@@ -200,10 +207,29 @@ $(function () {
         $messageType.text(messageValues[chosenLabelId]);
 
 
-        $pluso.attr("data-url", realPath + "/voltmeter/" + id);
-        $pluso.attr("data-image", imageUrl );
-        $pluso.attr("data-title", "Пиздецометр")
-        $pluso.attr("data-description", "У меня в жизни " + messageValues[id] + "! А что у тебя?")
+        if( window.pluso ) {
+            if (typeof window.pluso.start === "function") {
+
+                $pluso.children().remove();
+                $pluso.append( getPluso(intId, imageUrl));
+
+                window.pluso.start();
+            }
+        }
+    };
+
+    var getPluso = function(id, imageUrl) {
+        var pluso = $('<div/>').addClass("pluso").attr("id", "pluso")
+            .attr("data-options", "medium,square,line,horizontal,counter,theme=05")
+            .attr("data-services", "facebook,twitter,vkontakte,google,livejournal,odnoklassniki")
+            .attr("data-background", "transparent")
+            .attr("data-user", "1262715342")
+            .attr("data-url", realPath + "/voltmeter/" + id)
+            .attr("data-image", imageUrl )
+            .attr("data-title", "Пиздецометр. У меня в жизни " + messageValues[id] + "! А что у тебя?")
+            .attr("data-description", "У меня в жизни " + messageValues[id] + "! А что у тебя?");
+
+        return pluso;
     };
 
     var enableUI = function() {

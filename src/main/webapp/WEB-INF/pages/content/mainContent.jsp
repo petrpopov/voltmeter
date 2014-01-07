@@ -82,11 +82,13 @@
                     <p class="text-p"><span class="glyphicon glyphicon-share-alt"></span> Расскажите же скорее всем об этом:</p>
 
 
-                    <div class="pluso" id="pluso"
-                         data-background="transparent"
-                         data-options="medium,square,line,horizontal,counter,theme=05"
-                         data-services="facebook,twitter,vkontakte,google,livejournal,odnoklassniki"
-                         data-user="1262715342">
+                    <div id="plusoContainer">
+                        <!--div class="pluso" id="pluso"
+                             data-background="transparent"
+                             data-options="medium,square,line,horizontal,counter,theme=05"
+                             data-services="facebook,twitter,vkontakte,google,livejournal,odnoklassniki"
+                             data-user="1262715342">
+                        </div-->
                     </div>
                 </div>
             </div>

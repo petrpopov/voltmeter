@@ -48,7 +48,11 @@
 <!-- Main logic -->
 <script src="${pageContext.request.contextPath}/resources/js/pizdec.js" type="text/javascript"></script>
 
-<label id="realPath" hidden="true" style="display: none;">
+<label id="realPath" style="display: none;">
     <%= request.getScheme()+"://"
             + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() %>
+</label>
+<label id="realPort" style="display: none;"><%= request.getServerPort() %> </label>
+<label id="realPathWithoutPort" style="display: none;">
+    <%= request.getScheme()+"://" + request.getServerName() + request.getContextPath() %>
 </label>
