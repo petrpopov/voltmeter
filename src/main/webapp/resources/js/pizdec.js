@@ -60,7 +60,7 @@ $(function () {
 
 
         loadNewPage(chosenLabelId);
-        changeFinalMessages();
+        changeFinalMessages(chosenLabelId);
 
         //show results
         $results.show(SMALL_ANIMATION_TIME, function() {
@@ -85,21 +85,19 @@ $(function () {
     var showResultsById = function(id) {
         rotateToId(id);
 
-        changeFinalMessages();
-
         //show results
-        $results.show(SMALL_ANIMATION_TIME, function() {
-            $('html, body').animate({
-                scrollTop: $results.offset().top
-            }, BIG_ANIMATION_TIME);
-        });
+        $results.show();
+        changeFinalMessages(id);
     };
 
-    var changeFinalMessages = function() {
+    var changeFinalMessages = function(id) {
         //change image
         $pizdecCustomImage.attr("src", imagePath+chosenLabelId+imageSuffix);
         //change text
-        switch (chosenLabelId) {
+
+        var intId = parseInt(id);
+
+        switch (intId) {
             case 0:
             case 1:
             case 2:
@@ -126,12 +124,21 @@ $(function () {
                 break;
             case 6:
             case 7:
-            case 8:
                 $messageFirst.text("Воу-воу, палехче!");
                 $messageBefore.text("У вас в жизни творится");
                 $messageAdd.text("какой-то");
                 $messageAfter.text("");
                 $messageLast.text("Это очень плохо. Или нет. Нам все равно.");
+                break;
+            case 8:
+                $messageFirst.text("Ну вы вообще даете!");
+                $messageBefore.text("Хотите сказать, что вообще");
+                $messageAdd.text("");
+                $messageAfter.text("");
+
+                var text = "Это очень плохо. Или нет. Нам, в принципе, все равно, но вы можете послушать ";
+                text += "<a target='_blank' href='http://pleer.com/tracks/5805443xWiX'>песенку</a> ";
+                $messageLast.html(text);
                 break;
             default:
                 $messageFirst.text("Поздравляем!");
@@ -181,7 +188,7 @@ $(function () {
             chosenLabelId = id;
 
             if ($results.is(':visible')) {
-                changeFinalMessages();
+                changeFinalMessages(id);
             }
         });
 
