@@ -5,7 +5,7 @@
     <groupId>voltmeter</groupId>
     <artifactId>voltmeter</artifactId>
     <packaging>war</packaging>
-    <version>0.1.5-SNAPSHOT</version>
+    <version>0.1.6-SNAPSHOT</version>
 
     <name>voltmeter</name>
 
@@ -44,7 +44,7 @@
         </profile>
 
         <profile>
-            <id>release</id>
+            <id>release-voltmeter</id>
             <properties>
                 <mongodb.port>27017</mongodb.port>
                 <mongodb.db>voltmeter</mongodb.db>
