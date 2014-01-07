@@ -23,7 +23,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" />
 
 <!-- Bootstrap -->
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,19 +34,19 @@
 
 
 <!-- theme -->
-<link href="/resources/css/theme-dark.css" rel="stylesheet" media="screen">
-<link href="/resources/css/theme-alizarin.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/resources/css/theme-dark.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/resources/css/theme-alizarin.css" rel="stylesheet" media="screen">
 
 <!-- My custom stylesheet -->
-<link href="/resources/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 
-<script src="/resources/js/jquery-2.0.3.min.js" type="text/javascript"></script>
-<script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
 
-<script src="/resources/js/notify.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/notify.min.js" type="text/javascript"></script>
 
 <!-- Main logic -->
-<script src="/resources/js/pizdec.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/pizdec.js" type="text/javascript"></script>
 
 <label id="realPath" hidden="true" style="display: none;">
     <%= request.getScheme()+"://"

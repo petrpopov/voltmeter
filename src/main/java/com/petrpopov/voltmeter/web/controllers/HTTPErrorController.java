@@ -20,7 +20,7 @@ public class HTTPErrorController {
     @RequestMapping(value="/errors/404")
     public ModelAndView handle404() {
 
-        RedirectView rv = new RedirectView("error");
+        RedirectView rv = new RedirectView("/error");
         rv.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
 
         ModelAndView mv = new ModelAndView(rv);
