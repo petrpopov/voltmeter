@@ -102,10 +102,8 @@
 
 <div class="row">
     <hr/>
-    <div class="col-md-5">
-        <h3>Статистика за неделю</h3>
-        <p>
-            Скоро тут будут всякие бесполезные графики
-        </p>
+    <div class="col-md-7">
+        <h3>Статистика пиздеца за все время</h3>
+        <div id="graph" class="margin-row"></div>
     </div>
 </div>

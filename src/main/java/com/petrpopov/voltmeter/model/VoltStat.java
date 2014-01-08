@@ -23,6 +23,8 @@ public class VoltStat implements Serializable{
     @NotNull
     private VoltState state;
 
+    private String cookie;
+
     public VoltStat() {
     }
 
@@ -48,6 +50,14 @@ public class VoltStat implements Serializable{
 
     public void setState(VoltState state) {
         this.state = state;
+    }
+
+    public String getCookie() {
+        return cookie;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
     }
 
     @Override

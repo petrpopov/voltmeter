@@ -43,10 +43,13 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/jquery-2.0.3.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-
 <script src="${pageContext.request.contextPath}/resources/js/notify.min.js" type="text/javascript"></script>
-
 <script src="${pageContext.request.contextPath}/resources/js/lazyload.js" type="text/javascript"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/globalize.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/dx.module-core.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/dx.module-viz-core.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/dx.module-viz-charts.js" type="text/javascript"></script>
 
 <!-- Main logic -->
 <script src="${pageContext.request.contextPath}/resources/js/pizdec.js" type="text/javascript"></script>

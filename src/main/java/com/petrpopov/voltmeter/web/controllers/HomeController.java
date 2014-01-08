@@ -3,9 +3,12 @@ package com.petrpopov.voltmeter.web.controllers;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * User: petrpopov
@@ -13,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Time: 17:18
  */
 @Controller
-public class HomeController {
+public class HomeController extends BasicController {
 
     @Value("${min_voltmeter}")
     private Integer minVoltmeter;
@@ -22,7 +25,12 @@ public class HomeController {
     private Integer maxVoltmeter;
 
     @RequestMapping({"/","/home", "/index", "/main"})
-    public String showHomePage() {
+    public String showHomePage(@CookieValue(required = false, value = "VOLTMETER") String cookie, HttpServletResponse response) {
+
+        if( cookie == null ) {
+            setNewCookie(response);
+        }
+
         return "index";
     }
 

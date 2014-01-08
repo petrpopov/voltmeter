@@ -55,6 +55,40 @@ $(function () {
         enableUI();
         enableShare();
         enableAgain();
+        updateGraph();
+    };
+
+    var updateGraph = function() {
+
+        $.ajax({
+            type: "GET",
+            url: realPath + "/stats/all",
+            success: function(data) {
+
+                var graphData = [];
+                $.each(data, function(n, val) {
+                    graphData.push( {type: "" + messageValues[val.state] + "", value: val.count} );
+                });
+
+                $("#graph").dxChart({
+                    dataSource: graphData,
+
+                    series: {
+                        argumentField: "type",
+                        valueField: "value",
+                        name: "Cool stats",
+                        type: "bar",
+                        color: '#ffa500'
+                    },
+
+                    commonAxisSettings: {
+                        label: {
+                            overlappingBehavior: { mode: 'rotate', rotationAngle: 50 }
+                        }
+                    }
+                });
+            }
+        });
     };
 
     var enableShare = function() {
@@ -70,6 +104,7 @@ $(function () {
     };
 
     var doShare = function() {
+
         if( chosenLabelId < 0 ) {
             //show error message
             $resultsShareButton.notify(emptyMessage, {
@@ -81,8 +116,6 @@ $(function () {
         else {
             $('.notifyjs-bootstrap-base').hide();
         }
-
-
 
         loadNewPage(chosenLabelId);
         changeFinalMessages(chosenLabelId);
@@ -106,7 +139,7 @@ $(function () {
                 dataType: "JSON",
                 data: JSON.stringify( {state: chosenLabelId, voteDate: new Date()} ),
                 success: function(data) {
-                    console.log(data);
+                    updateGraph();
                 }
             });
         });
