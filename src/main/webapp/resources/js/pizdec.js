@@ -30,7 +30,7 @@ $(function () {
     var $messageLast = $('#messageLast');
 
     var imagePath = realPath + "/resources/img/voltmeter_";
-    var imageSuffix = ".png";
+    var imageSuffix = "_small.png";
 
     var emptyMessage = "Вы же ничего не выбрали! \n Укажите значение на приборчике";
 

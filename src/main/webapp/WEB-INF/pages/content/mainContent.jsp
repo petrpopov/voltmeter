@@ -61,11 +61,12 @@
 <div id="results" class="row margin-row" style="display: none;">
     <hr/>
 
-    <div class="col-md-8 col-md-offset-5">
+    <div class="col-md-8 col-md-offset-4">
         <div class="media">
                     <span class="pull-left" href="#">
                         <img id="pizdecCustomImage" class="media-object" width="200px" src="/resources/img/voltmeter_empty_650_490.png" alt="...">
                     </span>
+
             <div class="media-body">
                 <h4 class="media-heading">
                     <span class="glyphicon glyphicon-info-sign"></span>
@@ -95,9 +96,12 @@
         </div>
     </div>
 
-    <div class="col-md-offset-10">
-        <button id="againButton" class="btn btn-lg btn-theme device-share"><span class="glyphicon glyphicon-share-alt"></span>Заново</button>
+    <div class="row">
+        <div class="col-md-offset-10">
+            <button id="againButton" class="btn btn-lg btn-theme device-share"><span class="glyphicon glyphicon-share-alt"></span>Заново</button>
+        </div>
     </div>
+
 </div>
 
 <div class="row">
